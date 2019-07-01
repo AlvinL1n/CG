@@ -1,0 +1,6 @@
+<aura:component Implements="flexipage:availableForRecordHome,force:hasRecordId">
+	<div class="slds-page-header">
+        <h1 class="slds-page-header__title">Batch Add Company</h1>
+        <p class="slds-text-body_small slds-line-height_reset">By Alvin</p>
+    </div>
+</aura:component>

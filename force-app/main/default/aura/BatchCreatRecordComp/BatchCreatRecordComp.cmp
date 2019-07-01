@@ -1,0 +1,27 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable" controller="MyContactsController" access="global" >
+	<aura:handler name="init" action="{!c.getContactsList}" value="{!this}" />
+	<!-- 装载新的联系人 -->
+	<aura:attribute name="contactList"  type="List" />
+	<aura:attribute name="columns" type="List"/>
+	<lightning:card title="Contacts" iconName="standard:contact" footer="Card Footer">
+		<lightning:layout horizontalAlign="space">
+			<lightning:datatable data="{! v.contactList }" class="slds-m-top_medium"
+                             columns="{! v.columns }" 
+                             keyField="id"
+                             onrowselection="{! c.chooseone }" aura:id="data123"/>	
+
+
+
+		</lightning:layout>
+		
+			
+		
+	</lightning:card>
+	 <!-- <footer class="slds-card__footer "> -->
+	 	 <div class="slds-docked-form-footer">
+	 		<lightning:button label="New" onclick="{!c.newrow}" />
+	 		<lightning:button label="Choose" onclick="{!c.chooseone}" />
+	 	</div>
+	<!--  </footer> -->
+	
+</aura:component>

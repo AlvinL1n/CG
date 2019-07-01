@@ -1,0 +1,8 @@
+.THIS.changeMe {
+    background-color:yellow;
+    width:200px;
+}
+/*toggleCss.css*/
+.THIS.toggle {
+    display: none;
+}

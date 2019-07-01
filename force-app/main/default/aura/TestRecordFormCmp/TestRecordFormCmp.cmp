@@ -1,0 +1,68 @@
+<aura:component >
+
+    <ltng:require scripts="{!$Resource.CustomButtonUtils}" afterScriptsLoaded="{!c.test}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute access="global" name="disabled" type="Boolean" default="true"/>
+
+    <aura:attribute name="myText" type="string" default="Hello there!"/>
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <ui:outputText  class="field" value="{!v.myText}" /> <br />
+    <div class="slds-box " aura:id="testdiv0">123</div>
+    <div id="myDiv" aura:id="div1">
+        <p>See how Lightning Locker uses secure wrappers</p>
+    </div>
+    <lightning:input class="custom-input" type="date" name="Start" value="123" label="StartDate" variant="label-hidden" tabindex="1" />
+
+    <lightning:button class="slds-m-top_small"
+                              variant="brand"
+                              type="submit"
+                              name="update"
+                              label="Insert" onclick="{! c.test}"/>
+
+    <!-- <lightning:recordEditForm recordId="0017F00001kk8bWQAQ"
+                              objectApiName="Account"
+                              aura:id="createAccountForm"
+                              recordTypeId="0127F000000WXvP" onsubmit="{!c.handleSubmit}">
+        <div class="slds-box " aura:id="testdiv1">
+          
+          <lightning:input class="custom-input" type="date" name="Start" value="123" label="StartDate" variant="label-hidden" tabindex="1" disabled="{!v.disabled}"/>
+          <lightning:input class="custom-input" type="date" name="Start" value="123" label="StartDate" variant="label-hidden" tabindex="1" disabled="{!v.disabled}"/>
+          <lightning:input class="custom-input" type="date" name="Start" value="123" label="StartDate" variant="label-hidden" tabindex="1" disabled="{!v.disabled}"/>
+          <lightning:input class="custom-input" type="date" name="Start" value="123" label="StartDate" variant="label-hidden" tabindex="1" disabled="{!v.disabled}"/>
+          <lightning:input class="custom-input" type="date" name="Start" value="123" label="StartDate" variant="label-hidden" tabindex="1" disabled="{!v.disabled}"/>
+          <lightning:input class="custom-input" type="date" name="Start" value="123" label="StartDate" variant="label-hidden" tabindex="1" disabled="{!v.disabled}"/>
+        </div>
+        <div class="slds-box slds-theme_default">
+            <lightning:messages />
+            <aura:if isTrue="{! v.disabled}">
+              <lightning:outputField fieldName="Company__c"/>
+              <aura:set attribute="else">
+                <lightning:inputField fieldName="Company__c"/>
+              </aura:set>
+            </aura:if>
+            <lightning:outputField fieldName="Name"/>
+           
+            <lightning:outputField fieldName="Phone" />
+            <lightning:outputField fieldName="Type" aura:id="type1"/>
+
+            <lightning:button class="slds-m-top_small"
+                              variant="brand"
+                              type="submit"
+                              name="update"
+                              label="Insert" disabled="{!v.disabled}"/>
+        </div>
+        
+    </lightning:recordEditForm> --> 
+</aura:component>

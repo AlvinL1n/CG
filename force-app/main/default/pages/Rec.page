@@ -1,0 +1,9 @@
+<apex:page controller="testRec">
+  <!-- Begin Default Content REMOVE THIS -->
+  <apex:form >
+  <apex:inputfield value="{!rec.Name}" />
+  <br/>
+  <h1>{!rec.DeveloperName}</h1>
+  </apex:form>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,27 @@
+<apex:page controller="exampleCon">
+	<style>
+        .headerRow .TableTitle {
+            color: #CC0000 !important; 
+            text-align : center;
+        }
+    </style>
+    <apex:form >
+    <!-- <apex:pageMessage title="Visualforce Only"
+    summary="You do not need Apex controller"
+    detail="This sample shows how you can generate a message in Visualforce without needing Apex. By the way, the strength determines the size of the Icon"
+    severity="warning" strength="1" /> -->
+    <!-- actionpoller &  actionstatus -->
+        <!-- <apex:outputText value="Watch this counter: {!count}" id="counter"/>
+        <apex:actionStatus startText=" (incrementing...)" stopText=" (done)" id="counterStatus"/>
+        <apex:actionPoller action="{!incrementCounter}" reRender="counter" status="counterStatus" interval="5"/> -->
+
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:pageBlockTable value="{!MyAccounts}" var="Account" >
+                <apex:column headerValue="ID" headerClass="TableTitle" value="{!Account.ID}" />
+                <apex:column headerValue="Name" headerClass="TableTitle" value="{!Account.Name}" />
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

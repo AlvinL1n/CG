@@ -1,0 +1,29 @@
+<aura:component >
+  <aura:attribute name="eMailTemplete" type="EmailTemplate" />
+  <!-- 卡片 -->
+  <article class="slds-card">
+    <!-- 预览主题和正文 -->
+    <div class="slds-card__body slds-card__body_inner">
+      <br/>
+      <dl class="slds-list_stacked">
+        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="主题">主题:</dt>
+        <dd class="slds-item_detail slds-truncate" title="主题">
+          <div class="slds-box">
+            <p>
+              <ui:outputText value="{!v.eMailTemplete.Subject}" /> </p>
+          </div>
+        </dd>
+      </dl>
+      <br/>
+      <dl class="slds-list_stacked">
+        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="正文">正文:</dt>
+        <dd class="slds-item_detail slds-truncate" title="正文">
+          <div class="slds-box">
+            <p>
+              <ui:outputRichText class="slds-text-longform" value="{!v.eMailTemplete.HtmlValue}" /> </p>
+          </div>
+        </dd>
+      </dl>
+    </div>
+  </article>
+</aura:component>

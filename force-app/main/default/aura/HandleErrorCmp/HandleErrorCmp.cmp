@@ -1,0 +1,7 @@
+<aura:component controller="SimpleServerSideController">
+	<aura:attribute name="account" type="Account"/>
+	<aura:attribute name="con" type="Contact"/>
+	<p class="slds-text-heading_medium">{!v.account.Name}</p>
+	<p class="slds-text-heading_medium">{!v.con.Name}</p>
+	<lightning:button variant="brand" label="Edit" name="edit" onclick="{!c.calculate}" />
+</aura:component>

@@ -1,0 +1,23 @@
+<apex:page standardController="Account">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
+<span id="hideMyParent"></span> 
+<script type="text/javascript"> 
+$(document).ready(function() { 
+    var startYear=1982; var endYear=2034; var optionsString=''; 
+    if(startYear<endYear){ 
+        for(i=startYear;i<endYear+1;i++){ 
+            optionsString += "<option value=\""+i+"\">"+i+"</option>"; 
+        }
+         $('#calYearPicker').html(optionsString); 
+        } 
+        $('#sidebarDiv #hideMyParent').parent().parent().hide(); });
+        function opener(){
+            window.opener.location.href = "/0017F00000cw7KT";
+        }
+        </script>
+        <apex:form >
+            <apex:inputfield value="{!Account.DeliverDate__c  }"/>
+            <input type="button" onclick="opener()" value="关闭"/>
+        </apex:form>
+        
+</apex:page>

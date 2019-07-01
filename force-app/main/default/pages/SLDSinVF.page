@@ -1,0 +1,111 @@
+<apex:page sidebar="false"  applyBodyTag="false" docType="html-5.0" controller="SldsInVfController">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>SLDS ResponsiveDesign Visualforce Page in Salesforce Mobile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Import the Design System style sheet -->
+        <apex:slds />
+    </head>
+    <script type="text/javascript">
+      function changeinputvalue(){
+        alert("{!inputLastName}");
+        changeinput();
+      }
+    </script>
+    
+      <apex:form id="fm">
+      <apex:actionFunction name="changeinput" action="{!onclick}" reRender="fm"/>
+        <!-- REQUIRED SLDS WRAPPER -->
+        <article class="slds-card">
+          <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+              <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed"        >
+                  <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#contact" />
+                  </svg>
+                </span>
+              </div>
+              <div class="slds-media__body">
+                <h2>
+                  <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="[object Object]"        >
+                    <span class="slds-text-heading_small">Card Header</span>
+                  </a>
+                </h2>
+              </div>
+            </header>
+            <div class="slds-no-flex">
+              <button class="slds-button slds-button_neutral" onclick="changeinputvalue()">New</button>
+            </div>
+          </div>
+          <!-- <div class="slds-card__body slds-card__body_inner">Card Body (custom goes in here)</div>
+          <footer class="slds-card__footer">Card Footer</footer> -->
+       
+        <div class="slds-scope">
+            <!-- PRIMARY CONTENT WRAPPER -->
+            <!-- RESPONSIVE GRID EXAMPLE -->
+            <div class="myapp">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-large-size--1-of-2">
+                        <!-- <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">
+                      
+                </div> -->
+                      <div class="demo-only" style="padding-left: 2rem;">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label slds-align-middle" for="form-help">First Name</label>
+
+                                <div class="slds-form-element__icon">
+                                    <button aria-describedby="help" class="slds-button slds-button_icon">
+                                        <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#info" />
+                                        </svg>
+                                        <span class="slds-assistive-text">Help</span>
+                                    </button>
+                                </div>
+                                <div class="slds-form-element__control">
+                                    <input type="text" class="slds-input" id="form-help" placeholder="Field Level Help" width="70px" />
+
+                                </div>
+                                <label class="slds-form-element__label slds-align-middle" for="form-help2">First Name</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" class="slds-input" id="form-help2" placeholder="Field Level Help" width="70px" />
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-2">
+                        <!-- <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small">Box 2</div> -->
+                        <div class="demo-only" style="padding-left: 2rem;">
+                            <div class="slds-form-element  slds-has-error">
+                                <label class="slds-form-element__label slds-align-middle" for="form-help">Last Name</label>
+                                <div class="slds-form-element__icon">
+                                    <button aria-describedby="help" class="slds-button slds-button_icon">
+                                        <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#info" />
+                                        </svg>
+                                        <span class="slds-assistive-text">Help</span>
+                                    </button>
+                                </div>
+                                <div style="width: 200px;">
+                                    <apex:outputText id="form-help" html-aria-describedby="error-message-unique-id" styleclass="slds-output slds-hyphenate" style="width:100px;"  value="{!inputLastName}" />
+                                </div>
+                                <div class="slds-form-element__help" id="error-message-unique-id">This field is required</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / RESPONSIVE GRID EXAMPLE -->
+        </div>
+         </article>
+      </apex:form>
+   
+
+    </html>
+</apex:page>

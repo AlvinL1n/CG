@@ -1,0 +1,53 @@
+<aura:component controller="ContactEmailTemleteController">
+  <aura:attribute name="contact" type="Contact" />
+  <aura:attribute name="eMailTempletes" type="Object[]" />
+  <aura:attribute name="eMailTemplete" type="EmailTemplate" access="public" />
+  <!-- loading -->
+  <aura:attribute name="spinner" type="Boolean" default="true"/>
+  <!-- 供其他组件调用 -->
+  <aura:method name="getEmailTemplete" action="{!c.getEmailTemplete}" />
+  <aura:handler name="init" value="{! this }" action="{! c.init }" />
+  <!--   <aura:handler name="change" value="{!v.eMailTemplete}" action="{!c.onEmailTempleteChange}"/> -->
+
+  <aura:renderIf isTrue="{!v.spinner}">
+    <lightning:spinner />
+  </aura:renderIf>
+  
+  <!-- 卡片 -->
+  <article class="slds-card">
+    <!-- 头部 选择模板-->
+    <div class="slds-page-header slds-page-header_object-home">
+      <lightning:layout >
+        <lightning:layoutItem padding="around-large" largeDeviceSize="5" size="5">
+          <lightning:select aura:id="select" label="模板" name="templete" onchange="{!c.getEmailTemplete}">
+            <option value="">--选择模板--</option>
+            <aura:iteration items="{!v.eMailTempletes}" var="obj">
+              <option value="{!obj.Id}" text="{!obj.Name}" />
+            </aura:iteration>
+          </lightning:select>
+        </lightning:layoutItem>
+      </lightning:layout>
+    </div>
+    <!-- 身体（主题/文本编辑器） -->
+    <div class="slds-card__body slds-card__body_inner">
+      <lightning:layout >
+        <lightning:layoutItem padding="around-medium" largeDeviceSize="5" size="5">
+          <lightning:input type="email" label="收件人" name="toAddress" value="{!v.contact.Email}" />
+        </lightning:layoutItem>
+      </lightning:layout>
+      <lightning:layout >
+        <lightning:layoutItem padding="around-medium" largeDeviceSize="5" size="5">
+          <lightning:input type="text" label="主题" name="subject" value="{!v.eMailTemplete.Subject}" />
+        </lightning:layoutItem>
+      </lightning:layout>
+      <lightning:layout >
+        <lightning:layoutItem padding="around-medium" largeDeviceSize="12" size="12">
+        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="正文">正文</dt>
+        <dd class="slds-item_detail slds-truncate" title="正文">
+          <lightning:inputRichText value="{!v.eMailTemplete.HtmlValue}" />
+        </dd>
+        </lightning:layoutItem>
+      </lightning:layout>
+    </div>
+  </article>
+</aura:component>

@@ -1,0 +1,5 @@
+<aura:component >
+	<aura:registerEvent name="doctor" type="c:calldoctoreve"/>
+
+	 <lightning:button label="grandchild call doctor " variant="brand" onclick="{!c.calldoctor}"/>
+</aura:component>

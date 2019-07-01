@@ -1,0 +1,6 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations</h1>
+  This is your new Page
+  <IFRAME title="内容" SRC="http://alvin-home-dev-ed.my.salesforce.com/sol/public/search.jsp?orgId=00D7F0000048nWa" WIDTH="515" HEIGHT="360"></IFRAME>
+</apex:page>

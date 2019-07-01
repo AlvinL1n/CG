@@ -1,0 +1,60 @@
+.THIS {}
+.THIS .btnRight{
+	margin-left: 90%;
+}
+/*定义一个容器*/
+.THIS  .Circle {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  }
+.THIS .Circle #btnLabel {
+    display: block;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+  }
+  /*发送及发送中*/
+.THIS .sending{
+    width: 200px;
+    height: 200px;
+    background-size: 50%;
+    transition: all 3s;
+}
+/*发送完成*/
+.THIS .sended{
+    width: 200px;
+    height: 200px;
+    background-size: 50%;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: all .5s ease 1s;
+}
+/*隐藏checkbox*/
+.THIS .btnContainer input[type="checkbox"] {
+    display: none;
+  }
+
+/*.THIS .btnContainer input[type="checkbox"]:checked~#sendok {
+    opacity: 1;
+ }
+
+.THIS .btnContainer input[type="checkbox"]:checked~#sending {
+transform:translate(100px,-100px);
+}*/

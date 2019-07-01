@@ -1,0 +1,125 @@
+<aura:component implements="force:appHostable" controller="SearchAccountResult">
+    <aura:attribute name="searchResult" type="List" description="存储返回的客户结果" />
+    <aura:attribute name="searchKeyword" type="String" description="存储查询的关键字" />
+    <aura:attribute name="Message" type="boolean" default="false" description="展示查询的结果提示" />
+    <aura:attribute name="numberOfRecord" type="integer" default="0" description="多少条记录" />
+    <aura:attribute name="account" type="Account" description="点击的客户" />
+    <aura:attribute name="accname" type="String" description="点击的客户" />
+    <aura:attribute name="isdisplay" type="Boolean" description="shifou" default="true"/>
+    
+    <!-- 阶段 -->
+  	<aura:attribute name="step" type="String" />
+    <!-- 初始化table -->
+    <aura:handler name="init" value="{! this }" action="{! c.init }" />
+    <!-- 进度条 全局-->
+    <lightning:progressIndicator currentStep="{!v.step}" type="path">
+        <lightning:progressStep label="查询客户" value="1" />
+        <lightning:progressStep label="选择模板/填写内容" value="2" />
+        <lightning:progressStep label="预览" value="3" />
+        <lightning:progressStep label="发送" value="4" />
+    </lightning:progressIndicator>
+    <aura:renderif isTrue="{!v.step == '1'}">
+        <article class="slds-card">
+            <div class="slds-m-around--large">
+                <form class="slds-form--inline">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="search"></label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="searchId" class="slds-input" value="{!v.searchKeyword}" required="true" placeholder="Type here..." />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <button type="button" onclick="{!c.Search}" class="slds-button slds-button--brand">Search</button>
+                    </div>
+                </form>
+                <span class="slds-badge">{!v.numberOfRecord}</span>
+                <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Id">Id</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Account Name">Account Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Type">Type</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Industry">Industry</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Phone">Phone</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Fax">Fax</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:if isTrue="{!v.Message}">
+                            <div class="slds-text-color--error"> No Result Found...</div>
+                        </aura:if>
+                        <!--### display all records of searchResult attribute by aura:iteration ###-->
+                        <aura:iteration items="{!v.searchResult}" var="acc">
+                            <tr>
+                                <td onclick="{!c.tdClickHandler}" data-id="{!acc}">
+                                    <div class="slds-truncate">{!acc.Id}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{!acc.Name}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{!acc.Type}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{!acc.Industry}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{!acc.Phone}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate">{!acc.Fax}</div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </aura:renderif>
+    <!-- 选择模版-->
+    <aura:renderif isTrue="{!v.step == '2'}">
+    </aura:renderif>
+    <!-- 预览效果-->
+    <aura:renderif isTrue="{!v.step == '3'}">
+    </aura:renderif>
+    <!-- 发送邮件-->
+    <aura:renderif isTrue="{!v.step == '4'}">
+    </aura:renderif>
+    <article class="slds-card">
+        <footer class="slds-card__footer">
+            <lightning:layout >
+                <span class="slds-pill slds-pill_link">
+          <a href="javascript:void(0);" class="slds-pill__action" title="已选择联系人">
+           <span class="slds-pill__label">已选择客户：{!v.account.name} <br/> 邮箱：{!v.account.Desciption}</span>
+                </a>
+                </span>
+                <lightning:layoutItem padding="around-large" largeDeviceSize="2" size="2" class="buttonLeft">
+                    <!-- 第一步没有上一步 -->
+                    <aura:renderIf isTrue="{!v.step != '1'}">
+                        <lightning:button variant="brand" label="上一步" onclick="{!c.Last}" />
+                    </aura:renderIf>
+                    <!-- 第四步没有下一步 -->
+                    <aura:renderIf isTrue="{!v.step != '4'}">
+                        <lightning:button variant="brand" label="下一步" onclick="{!c.Next}" />
+                    </aura:renderIf>
+                    <!-- 发送 -->
+                    <!--  <aura:renderIf isTrue="{!v.step == '4'}">
+            <lightning:button variant="brand" label="发送"/>
+          </aura:renderIf> -->
+                </lightning:layoutItem>
+            </lightning:layout>
+        </footer>
+    </article>
+</aura:component>

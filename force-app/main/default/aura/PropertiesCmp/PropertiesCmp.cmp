@@ -1,0 +1,10 @@
+<!--Sample.cmp-->
+<aura:component controller="SampleAuraController" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="obj" type="SampleAuraController"/>
+    <!--Component Start-->
+    <div class="slds-m-around_xx-large">
+    	<button onclick="{!c.checkMap}" />
+    </div>
+    <!--Component End-->
+</aura:component>

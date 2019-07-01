@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable"  access="global"> 
+
+	
+</aura:component>

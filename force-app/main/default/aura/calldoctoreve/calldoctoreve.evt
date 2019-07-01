@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Event template" >
+    <aura:attribute name="doctorname" type="String" access="private"/>
+</aura:event>

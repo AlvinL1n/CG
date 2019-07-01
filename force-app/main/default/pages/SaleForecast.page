@@ -1,0 +1,12 @@
+<apex:page controller="SaleForecastController" sidebar="false" docType="html-5.0">
+<apex:slds />
+    <apex:form >
+        
+             <apex:input value="{!in33}" disabled="false" />
+              <apex:input value="{!in34}" disabled="true" />
+               <apex:input value="{!in35}" disabled="false" />
+      
+         
+        <apex:commandbutton action="{!submit}" value="submit"  />
+    </apex:form>
+</apex:page>

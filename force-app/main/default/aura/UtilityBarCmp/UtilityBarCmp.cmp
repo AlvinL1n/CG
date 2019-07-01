@@ -1,0 +1,8 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForAllPageTypes" access="global">
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:utilityBarAPI aura:id="utilityBar"/>
+    <aura:handler name="onChange" value="{!v.recordId}" action="{!c.onRecordIdChange}"/>
+    <div>
+        <p>The current recordId is {!v.recordId}.</p>
+    </div>
+</aura:component>

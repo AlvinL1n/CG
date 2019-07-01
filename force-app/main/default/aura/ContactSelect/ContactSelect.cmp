@@ -1,0 +1,109 @@
+<aura:component implements="force:appHostable" controller="ContactSelectController">
+  <!-- 联系人列表table -->
+  <aura:attribute name="mydata" type="Object" />
+  <!-- 联系人列表table header -->
+  <aura:attribute name="mycolumns" type="List" />
+  <!-- 姓名 -->
+  <aura:attribute name="contactName" type="String" />
+  <!-- 性别 -->
+  <aura:attribute name="contactGender" type="String" />
+  <!-- 选择的联系人 -->
+  <aura:attribute name="contact" type="Contact" />
+  <!-- 邮件模板 -->
+  <aura:attribute name="eMailTemplete" type="EmailTemplate"/>
+  <!-- 阶段 -->
+  <aura:attribute name="step" type="String" />
+  <!-- loading -->
+  <aura:attribute name="spinner" type="Boolean" default="true"/>
+  <!-- 初始化table -->
+  <aura:handler name="init" value="{! this }" action="{! c.init }" />
+  
+  <aura:renderIf isTrue="{!v.spinner}">
+    <lightning:spinner />
+  </aura:renderIf>
+
+  <!-- 进度条 全局-->
+  <lightning:progressIndicator currentStep="{!v.step}" type="path">
+    <lightning:progressStep label="选择成员" value="1"/>
+    <lightning:progressStep label="选择模板/填写内容" value="2" />
+    <lightning:progressStep label="预览" value="3" />
+    <lightning:progressStep label="发送" value="4" />
+  </lightning:progressIndicator>
+
+  <!-- 卡片 选择联系人-->
+  <aura:renderIf isTrue="{!v.step == '1'}">
+    <article class="slds-card">
+      <!-- 头部 查询条件-->
+      <div class="slds-page-header slds-page-header_object-home">
+        <lightning:layout >
+          <!-- 姓名 -->
+          <lightning:layoutItem padding="around-large" largeDeviceSize="3" size="3">
+            <lightning:input type="search" label="姓名" name="search" value="{!v.contactName}" />
+          </lightning:layoutItem>
+          <!-- 性别 -->
+          <lightning:layoutItem padding="around-large" largeDeviceSize="2" size="2">
+            <lightning:select aura:id="select" label="性别" name="sex" value="{!v.contactGender}">
+              <option value="">--选择性别--</option>
+              <option value="男" text="男" />
+              <option value="女" text="女" />
+            </lightning:select>
+          </lightning:layoutItem>
+          <!-- 查询 -->
+          <lightning:layoutItem padding="around-large" largeDeviceSize="2" size="2" class="buttonmargin">
+            <lightning:button variant="neutral" label="查询" onclick="{! c.getContactName }" />
+          </lightning:layoutItem>
+        </lightning:layout>
+      </div>
+      <!-- 身体（table表） -->
+      <div class="slds-card__body slds-card__body_inner">
+        <lightning:datatable data="{! v.mydata }" columns="{! v.mycolumns }" keyField="id" onrowselection="{! c.getSelectedName }" minColumnWidth="30px"/>
+        <!--  <c:LightningTable object="Account" fields="Id,Name,Phone" pageSize="10" /> -->
+      </div>
+    </article>
+  </aura:renderIf>
+
+
+
+  <!-- 卡片 选择模板-->
+  <aura:renderIf isTrue="{!v.step == '2'}">
+    <c:ContactEmailTemlete contact="{!v.contact}" aura:id="step2"/>
+  </aura:renderIf>
+
+  <!-- 卡片 预览-->
+  <aura:renderIf isTrue="{!v.step == '3'}">
+    <c:ContactEmailTemleteReview eMailTemplete="{!v.eMailTemplete}"/>
+  </aura:renderIf> 
+
+  <!-- 卡片 发送-->
+  <aura:renderIf isTrue="{!v.step == '4'}">
+    <c:ContactSendEmail contact="{!v.contact}" eMailTemplete="{!v.eMailTemplete}"/>
+  </aura:renderIf>
+
+  <!-- 卡片 脚 -->
+  <article class="slds-card">
+    <footer class="slds-card__footer">
+      <lightning:layout >
+        <span class="slds-pill slds-pill_link">
+          <a href="javascript:void(0);" class="slds-pill__action" title="已选择联系人">
+           <span class="slds-pill__label">已选择联系人：{!v.contact.Name} <br/> 邮箱：{!v.contact.Email}</span>
+        </a>
+        </span>
+        <lightning:layoutItem padding="around-large" largeDeviceSize="2" size="2" class="buttonLeft">
+          <!-- 第一步没有上一步 -->
+          <aura:renderIf isTrue="{!v.step != '1'}">
+            <lightning:button variant="brand" label="上一步" onclick="{!c.Last}" />
+          </aura:renderIf>
+          <!-- 第四步没有下一步 -->
+          <aura:renderIf isTrue="{!v.step != '4'}">
+            <lightning:button variant="brand" label="下一步" onclick="{!c.Next}" />
+          </aura:renderIf>
+          <!-- 发送 -->
+         <!--  <aura:renderIf isTrue="{!v.step == '4'}">
+            <lightning:button variant="brand" label="发送"/>
+          </aura:renderIf> -->
+        </lightning:layoutItem>
+      </lightning:layout>
+    </footer>
+  </article>
+  
+</aura:component>

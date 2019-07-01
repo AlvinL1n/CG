@@ -1,0 +1,20 @@
+<apex:page controller="Test_SharingPageController">
+        <apex:form >
+                <apex:pageBlock >
+                        无标签 : {!acc.Name}
+                        普通标签 ：<apex:inputText value="{!acc.Name}" / >
+                        标准标签 ：<apex:inputField value="{!acc.Name}" /> 
+                </apex:pageBlock>
+                <apex:pageBlock >
+                        无标签 : {!acc.SLA__c}
+                        普通标签 ：<apex:inputText value="{!acc.SLA__c}" / >
+                        标准标签 ：<apex:inputField value="{!acc.SLA__c}" /> 
+                </apex:pageBlock>
+                <apex:commandButton action="{!dosave}" value="SAVE"/>
+                <apex:pageBlock >
+                        无标签 : {!queryacc.SLA__c}
+                        普通标签 ：<apex:inputText value="{!queryacc.SLA__c}" / >
+                        标准标签 ：<apex:inputField value="{!queryacc.SLA__c}" />
+                </apex:pageBlock>
+        </apex:form>
+</apex:page>

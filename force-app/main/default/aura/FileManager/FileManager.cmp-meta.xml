@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>42.0</apiVersion>
+    <description>Controller to Upload an Image and List all images for the record</description>
+</AuraDefinitionBundle>

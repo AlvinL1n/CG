@@ -1,0 +1,5 @@
+<apex:page controller="CalloutOldOrg">
+ <apex:form >
+	<apex:commandButton action="{!getAcc}" value="抓客户"/>
+</apex:form> 
+</apex:page>

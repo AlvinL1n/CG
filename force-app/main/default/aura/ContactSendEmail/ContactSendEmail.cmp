@@ -1,0 +1,34 @@
+<aura:component controller="ContactSendEmailController">
+  <aura:attribute name="contact" type="Contact" />
+  <aura:attribute name="eMailTemplete" type="EmailTemplate" />
+  <aura:attribute name="msg" type="String" default="点击发送信封就发出去-哈哈哈哈哈" />
+  <!-- loading -->
+  <aura:attribute name="spinner" type="Boolean" default="false" />
+  <aura:renderIf isTrue="{!v.spinner}">
+    <lightning:spinner />
+  </aura:renderIf>
+  <!-- 卡片 -->
+  <article class="slds-card">
+    <!-- <div class="slds-card__header slds-grid">
+      <lightning:button variant="brand" label="发送" onclick="{!c.sendEmail}" class="btnRight"/>
+    </div> -->
+    <!-- 预览主题和正文 -->
+    <div class="slds-card__body slds-card__body_inner" style="height: 400px;">
+      <dl class="slds-list_stacked">
+        <dd class="slds-item_detail slds-truncate" title="消息">
+          <div class="slds-box">
+            <p align="center">{!v.msg} </p>
+           <!--  <img id="send" src="{!$Resource.SendIcon}" style="margin-left: 40%;margin: auto;position: absolute;" onclick="{!c.sendEmail}" /> -->
+              <div class="Circle">
+                <label id="btnLabel" for="btnInput"></label>
+                <input type="checkbox" id="btnInput" name="btnInput" onclick="{!c.sendEmail}"/>
+                <div id="sending" style="{!'background: url(' + $Resource.EmailIcon +') center center no-repeat;'}" class="sending"></div>
+                <div id="sendok" style="{!'background: url(' + $Resource.SuccessIcon +') center center no-repeat;'}" class="sended"></div>
+                <div id="senderror" style="{!'background: url(' + $Resource.ErrorIcon +') center center no-repeat;'}" class="sended"></div>
+              </div>
+          </div>
+        </dd>
+      </dl>
+    </div>
+  </article>
+</aura:component>

@@ -1,0 +1,124 @@
+<!--
+- @FileName: UploadSobjectData.page
+- @Author: Mike Xu
+- @Date:   2017-10-22 10:11:35
+- @Description:
+- @Related:
+---------------------------------------------------
+- @Last_Modified_by:   Mike Xu
+- @Last_Modified_time: 2017-11-02 20:58:58
+- @Modifiy_Purpose:
+-->
+
+<apex:page controller="UploadFileController" docType="html-5.0" lightningstylesheets="true">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Import the Design System style sheet -->
+    <title>Upload Merchant Data</title>
+    <apex:slds />
+    <style type="text/css">
+        .headerRow{
+            background-color: #c7c7e2;
+            color: black;
+            font-family: "Microsoft YaHei"
+        }
+        .dataCell{
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="slds-scope">
+<apex:form >
+    <div class="slds-page-header" role="banner">
+      <div class="slds-grid">
+        <div class="slds-col slds-has-flexi-truncate">
+          <!-- HEADING AREA -->
+            <div class="slds-media slds-no-space slds-grow">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-doctype-csv" title="Description of icon when needed">
+                        <svg class="slds-icon" aria-hidden="true">
+                            <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/doctype-sprite/svg/symbols.svg#csv')}"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Only the CSV file format is supported</span>
+                    </span>
+                 </div>
+                <div class="slds-media__body">
+                    <p class="slds-text-title--caps slds-line-height--reset">Upload</p>
+                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Merchant Datas">{!sobjectLabel}</h1>
+                </div>
+            </div>
+          <!-- / HEADING AREA -->
+        </div>
+      </div>
+    </div>
+    <!-- / PAGE HEADER -->
+    <apex:pagemessages />
+
+    <!-- ACCOUNT DETAIL CARD -->
+    <div class="slds-panel slds-grid slds-grid--vertical slds-nowrap">
+        <div class="slds-form--stacked slds-grow slds-scrollable--y">
+            <div class="slds-panel__section">
+                <div style=" padding-top: 5rem; position: relative;height: 120px;">
+                    <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help" style="position: absolute; top: 0px; left: 10px;;">
+                        <div class="slds-popover__body">
+                            <li>Only the .CSV file format is allowed</li>
+                            <li>The file encoding format must be utf-8</li>
+                            <li>Import up to 5,000 records at a time</li>
+                        </div>
+                    </div>
+                    <apex:outputText > Choose the fil(选择文件)</apex:outputText>
+                    <apex:inputFile value="{!csvFileBody}" accept="csv" lang="en-us" contentType="text/csv" styleclass="slds-file-selector" style="margin-top: 5px;color:transparent;"/>
+                    <apex:commandButton value="Upload" action="{!readFromFile}" styleClass="slds-button_brand"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <apex:commandButton value="Return" action="{!doCancel}" styleClass="slds-button_brand"/>
+                </div>
+                
+
+            </div>
+    <!-- / ACCOUNT DETAIL CARD -->
+        </div>
+    </div>
+    <apex:pageBlock id="dataPanel" rendered="{!readSuccess}">
+        <apex:pageblocktable value="{!sobjectDataListByPage}" id="dataTable" var="con" styleclass="slds-table slds-table_bordered slds-table_cell-buffer">
+            <apex:repeat value="{!fieldNameList}" var="fieldName">
+                <apex:column value="{!con[fieldName]}" />
+            </apex:repeat>
+        </apex:pageblocktable>
+        <table style="margin-top: 5px;width: 400px;">
+            <tr>
+                <td style="width: 47px;"><apex:commandButton value="|<" action="{!first}" disabled="{!!hasPrevious}"/></td>
+                <td style="width: 42px;"><apex:commandButton value="<" action="{!previous}" disabled="{!!hasPrevious}"/></td>
+                <td style="width: 42px;"><apex:commandButton value=">" action="{!next}" disabled="{!!hasNext}" /></td>
+                <td style="width: 47px;"><apex:commandButton value=">|" action="{!last}" disabled="{!!hasNext}"/></td>
+                <td style="width: 70px;text-align:center;vertical-align: middle;">Page {!PAGE_NUMBER}</td>
+                <td style="width: 150px;;vertical-align: middle;">Total {!RESULT_NUMBER}</td>
+            </tr>
+        </table>
+        <!-- <apex:panelGrid columns="6" style="width: 230px;margin-top: 5px;">
+            <apex:commandLink action="{!first}" rendered="{!hasPrevious}" value="<<"></apex:commandlink>
+            <apex:outputText value="<<" rendered="{!!hasPrevious}" />
+
+            <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" value="<"></apex:commandlink>
+            <apex:outputText value="<" rendered="{!!hasPrevious}"/>
+
+            <apex:commandLink action="{!next}" rendered="{!hasNext}" value=">"></apex:commandlink>
+            <apex:outputText value=">" rendered="{!!hasNext}"/>
+
+            <apex:commandLink action="{!last}" rendered="{!hasNext}" value=">>"></apex:commandlink>
+            <apex:outputText value=">>" rendered="{!!hasNext}"/>
+
+            <apex:outputText value="Page {!PAGE_NUMBER}" style="margin-left: 5px;"/>
+            <apex:outputText value="Total {!RESULT_NUMBER}" />
+        </apex:panelGrid> -->
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton value="Save" action="{!saveData}" styleClass="slds-button_brand" style="margin-top: 5px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:commandButton value="Return" action="{!doCancel}" styleClass="slds-button_brand"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+</apex:form>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,15 @@
+<apex:page controller="TestSelectController">
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations</h1>
+  <div>
+      <apex:form >
+          <apex:pageblock >
+              <apex:selectList size="1" value="{!myVal}">
+                   <apex:selectOptions value="{!singleOptions}" ></apex:selectOptions>
+              </apex:selectList>
+              <apex:commandButton action="{!switchAcc}" value="切换客户"/>
+              value:{!myVal}
+          </apex:pageblock>
+      </apex:form>
+  </div>
+</apex:page>
